@@ -6,8 +6,18 @@ function AddProduct() {
   const [category, setCategory] = useState("");
   const [company, setCompany] = useState("");
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     console.warn(name, price, category, company);
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
+    let result = await fetch("http://localhost:5000/add-product", {
+      method: "post",
+      body: JSON.stringify({ name, price, category, company, userId }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    result = await result.json();
+    console.warn(result);
   };
 
   return (
