@@ -5,8 +5,14 @@ function AddProduct() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [company, setCompany] = useState("");
+  const [error, setError] = useState(false);
 
   const handleAdd = async () => {
+    if (!name || !price || !company || !category) {
+      setError(true);
+      return false;
+    }
+
     console.warn(name, price, category, company);
     const userId = JSON.parse(localStorage.getItem("user"))._id;
     let result = await fetch("http://localhost:5000/add-product", {
@@ -32,6 +38,10 @@ function AddProduct() {
         }}
         value={name}
       ></input>
+      {error && !name && (
+        <span className="invalid-input">Enter valid name</span>
+      )}
+
       <input
         className="inputBox"
         type="text"
@@ -41,6 +51,9 @@ function AddProduct() {
         }}
         value={price}
       ></input>
+      {error && !price && (
+        <span className="invalid-input">Enter valid price</span>
+      )}
       <input
         className="inputBox"
         type="text"
@@ -50,6 +63,9 @@ function AddProduct() {
         }}
         value={category}
       ></input>
+      {error && !category && (
+        <span className="invalid-input">Enter valid category</span>
+      )}
       <input
         className="inputBox"
         type="text"
@@ -59,6 +75,9 @@ function AddProduct() {
         }}
         value={company}
       ></input>
+      {error && !company && (
+        <span className="invalid-input">Enter valid company</span>
+      )}
       <button onClick={handleAdd} className="registerButton">
         Add product
       </button>
