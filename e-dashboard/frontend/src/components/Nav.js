@@ -23,7 +23,7 @@ function Nav() {
         <li>
           <Link to="/profile">Profile</Link>
         </li>
-        <li>
+        {/* <li>
           {auth ? (
             <Link to="/signup" onClick={logout}>
               Logout
@@ -34,7 +34,21 @@ function Nav() {
         </li>
         <li>
           <Link to="/login">Login</Link>
-        </li>
+        </li> */}
+        {auth ? (
+          <Link to="/signup" onClick={logout}>
+            Logout
+          </Link>
+        ) : (
+          <>
+            <li>
+              <Link to="/signup">SignUp</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );
