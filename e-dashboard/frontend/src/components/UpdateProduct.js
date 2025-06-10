@@ -37,7 +37,6 @@ function UpdateProduct() {
     result = await result.json();
     console.warn(result);
     navigate("/");
-    /* resp.send(result); */
   };
 
   return (
